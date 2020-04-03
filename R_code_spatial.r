@@ -65,7 +65,33 @@ install.packages("ggplot2")
 # for Windows users: save as "yourprefferredname.RData"
 
 
+# load the previously saved .RData
 
+# setting the working directory: lab
+# Windows
+# setwd("C:/lab/")
+# Mac users
+# setwd("/Users/yourname/lab/")
+# Linux users
+setwd("~/lab")
+
+load("spatial.RData")
+
+ls()
+# covid
+
+install.packages("ggplot2")
+library(ggplot2) #require(ggplot2)
+
+data(mpg)
+head(mpg)
+# key components: data, aes, geometry
+ggplot(mpg, aes(x=displ,y=hwy)) + geom_point()
+ggplot(mpg, aes(x=displ,y=hwy)) + geom_line()
+ggplot(mpg, aes(x=displ,y=hwy)) + geom_polygon()
+
+head(covid)
+ggplot(covid, aes(x=lon, y=lat, size=cases)) + geom_point()
 
 
 
