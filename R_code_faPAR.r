@@ -39,6 +39,24 @@ pdf("faPAR.pdf")
 levelplot(faPAR10)
 dev.off()
 
+############### day 2
+library(raster)
+library(rasterdiv)
+library(rasterVis)
 
+setwd("~/lab/")
+# setwd("/Users/utente/lab") #mac
+# setwd("C:/lab/") # windows
+
+load("faPAR.RData")
+
+# the original faPAR from Copernicus is 2GB
+# let's see how much spae is needed for an 8-bit set 
+
+writeRaster(copNDVI, "copNDVI.tif")
+# 5.3MB
+
+# faPAR: levelplot this set
+levelplot(faPAR10)
 
 
