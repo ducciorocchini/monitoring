@@ -49,6 +49,49 @@ source("prediction.r")
 plot(predicted.snow.2025.norm, col=cl)
 
 
+########################################## 
+
+## day 2nd
+
+setwd("~/lab/snow/")
+# setwd("/Users/utente/lab/snow/") #mac
+# setwd("C:/lab/snow/") # windows
+
+# Exercise: import the snow cover imeages altogether
+
+# fast version of import and plot of many data for lazy people!
+rlist <- list.files(pattern="snow")
+rlist
+
+import <- lapply(rlist, raster)
+snow.multitemp <- stack(import)
+
+cl <- colorRampPalette(c('darkblue','blue','light blue'))(100) 
+plot(snow.multitemp, col=cl)
+
+# load("name.RData")
+
+prediction <- raster("predicted.2025.norm.tif")
+plot(prediction, col=cl)
+
+# export the output
+# you made the calculation and you want to send the output to a colleague
+
+writeRaster(prediction, "final.tif")
+
+# final stack
+final.stack <- stack(snow.multitemp, prediction)
+plot(final.stack, col=cl)
+
+# export the R graph for your beautiful thesis!
+pdf("my_final_exciting_graph.pdf")
+plot(final.stack, col=cl)
+dev.off()
+
+png("my_final_exciting_graph.png")
+plot(final.stack, col=cl)
+dev.off()
+
 
 
 
